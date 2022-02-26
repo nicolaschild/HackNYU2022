@@ -24,15 +24,37 @@ function update() {
     width++;
     element.style.width = width + '%'; 
     }
-/*
-    
 
-    class transportation(CarbonFootPrint):
-        
-        def go(self, kilometers, type):
-            (dis + fuel use) * emission_factor
-    
-        
 
-*/
+function Plane(distance) {
+    this.emissions = 69.25;
+    this.distance = distance;
+    this.fuel_usage = 61.55;
+}
 
+function Car(distance){
+    this.emissions = 70.22;  //emission factor
+    this.distance = distance; //distance in miles
+    this.fuel_usage = 25.4 //miles per gallon
+}
+
+function go(distance, type){
+    type = type.toLowerCase()
+    switch(type){
+        case "plane": 
+            var type = new Plane(distance)
+            break;
+        case "car":
+            var type = new Car(distance);
+            break;
+        default:
+            alert("We don't have that, sorry")
+    }
+    return (type.distance + type.fuel_usage) * type.emissions;
+}
+
+function callGo(){
+    var miles = int(document.getElementById("travelInput"));
+    var method = document.getElementById("travelMethod");
+    go(miles, method);
+}
