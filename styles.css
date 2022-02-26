@@ -1,0 +1,33 @@
+
+
+body {
+    box-sizing: border-box;
+	font-size: 12;
+	margin-left: 15%;
+	margin-right: 15%;
+	margin-bottom: 10%;
+    margin-top: 10%;
+    color: rgb(0, 0, 0);
+    /* Webpages background color */
+    background-color: rgba(55, 128, 38, 255);
+    border-style: solid;
+}
+
+.outershell {
+    /* This is for the main pages color */
+    margin-top: -21px;
+    background-color: rgb(255, 255, 255);
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    grid-auto-rows: minmax(100px, auto);
+}
+
+#travelTextBox {
+    margin-right: 10%;
+
+}
+
