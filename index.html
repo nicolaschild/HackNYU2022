@@ -13,7 +13,9 @@
         <header>
             <h1 id="title" style="line-height: 30px;">Daily Carbon Footprint</h1>
         </header>
+        
         <hr> <!-- This tag does not need a close -->
+            
             <div id="progress">
                 <div class ="left" id="progressBar"></div>
             </div>
@@ -34,19 +36,19 @@
                         <option value="bus">bus</option>
                         
                     </select>
-                    <input id="clickMe" type="button" value="Add" onclick="callGo();" />
+                    <input id="clickMe" type="button" value="Add" onclick="createObject(document.getElementById('travelInput').value, document.getElementById('travelMethod').value);" />
                     <!-- <button type="button">Add</button> -->
             </div>
             <!--Plastic stuffs -->
             <h2>Plastic</h2> 
                 <input id="plasticInput" type="text">
-                <select name="typeOfPlastic" id="travelMethod">
+                <select name="typeOfPlastic" id="plasticMethod">
                     <option value="eightOz">8oz bottle</option>
                     <option value="twelveOz">12oz bottle</option>
                     <option value="thirtyTwoOz">32oz bottle</option>
 
                 </select>
-                <button type="button">Add</button>
+                <input id="clickMe" type="button" value="Add" onclick="createObject(document.getElementById('plasticInput').value, document.getElementById('plasticMethod').value);"/>
             <!--Energy stuffs-->
             <h2>Energy</h2>
                 <input id="electricalInput" type="text">

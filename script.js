@@ -36,54 +36,92 @@ var width = 1
 function update(amount) {
     //Updates the status bar by 1%! Have at it Ty
     //Call it in domLoaded to use it, could even loop through it to set to desired amount
+    
     var element = document.getElementById("progressBar");   
-    width+=amount;
-    element.style.width = width + '%'; 
+    var boundary = 100;
+    if ((width + amount) < boundary){
+        width+=amount;
+        element.style.width = width + '%'; 
+    }
     }
 
 class Plane {
-     constructor(distance) {
-        this.distance = distance;
-        this.fuel_usage = 61.55;
+     constructor(value) {
+        this.value = value;
+        this.fuel_usage = 51;
     }
 }
 
 class Car{
-    constructor(distance){
-        this.distance = distance; //distance in miles
+    constructor(value){
+        this.value = value; //distance in miles
         this.fuel_usage = 25.4; //miles per gallon
     }
 }
 
 
-function go(distance, type){
-    type = type.toLowerCase()
-    var myObject;
-    switch(type){
-        case "plane": 
-            myObject = new Plane(distance)
-            break;
-        case "car":
-            myObject = new Car(distance);
-            break;
-        default:
-            alert("We don't have that, sorry")
+
+
+class Transport{
+    constructor(value, type){
+        this.value = value;
+        this.type = type;
+        this.fuel_usage;
     }
-    load_text();
-    return (myObject.distance / myObject.fuel_usage) * 20;
+    calcCF(){
+        switch(this.type){
+            case "plane": 
+                load_text(); 
+                this.fuel_usage = 51;
+                return (this.value / this.fuel_usage) * 21;
+            case "car":
+                load_text();   
+                this.fuel_usage = 25.4;
+                return (this.value / this.fuel_usage) * 20;
+            case "bus":
+                load_text();   
+                this.fuel_usage = 32.9;
+                return (this.value / this.fuel_usage) * 20;
+            default:
+                alert("We don't have that, sorry")
+        }
+    }
 }
 
-function callGo(){
-    let miles = parseInt(document.getElementById("travelInput").value);
-    let method = document.getElementById("travelMethod").value;
-    //Need to check if miles is NaN, then we can throw an error and not call the function
+class Plastic {
+    constructor(value, type){
+        this.value = value;
+        this.type = type;
+    }
+    calcCF(){
+        switch(this.type){
+            case "eightOz":
+                return this.value * ((8*.5)/50.72);
+            case "twelveOz":
+                return this.value * ((12*.5)/50.72);
+            case "thirtyTwoOz":
+                return this.value * ((32*.5)/50.72);
+        }
+    }
+}
+
+function createObject(value, type){
+    value = parseInt(value);
     error = document.getElementById("error");
-    if (isNaN(miles)) {
-       error.innerHTML = "Please enter a number!";
+    if (isNaN(value)) {
+        error.innerHTML = "Please enter a number!";
     }
     else {
-       error.innerHTML = "";
-       var amount = .1 * go(miles, method);
-       update(amount);
+        error.innerHTML = "";
+        var transportArr = ['car', 'plane', 'bus']
+        var plasticArr = ['eightOz', 'twelveOz', 'thirtyTwoOz']
+        if (transportArr.indexOf(type) != -1){
+            var myTransport = new Transport(value, type);
+            update(.5 * myTransport.calcCF());
+        }
+        else if (plasticArr.indexOf(type) != -1){
+            var myPlas = new Plastic(value, type);
+            update(.5 * myPlas.calcCF());
+        }
     }
 }
