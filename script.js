@@ -8,6 +8,11 @@ function domLoaded() {
     load_text();
 }
 
+function clearTravelInput() {
+    //Function to clear the text box for CInput
+    document.getElementById("travelInput").value = "";
+ }
+
 
 function load_text() {
     document.getElementById("travelInput").value = "miles";
@@ -15,13 +20,12 @@ function load_text() {
     document.getElementById("electricalInput").value = "minutes ran";
 }
 
-
-function update() {
+var width = 1
+function update(amount) {
     //Updates the status bar by 1%! Have at it Ty
     //Call it in domLoaded to use it, could even loop through it to set to desired amount
     var element = document.getElementById("progressBar");   
-    var width = 1;
-    width++;
+    width+=amount;
     element.style.width = width + '%'; 
     }
 
@@ -35,7 +39,7 @@ function Plane(distance) {
 function Car(distance){
     this.emissions = 70.22;  //emission factor
     this.distance = distance; //distance in miles
-    this.fuel_usage = 25.4 //miles per gallon
+    this.fuel_usage = 25.4; //miles per gallon
 }
 
 function go(distance, type){
@@ -54,7 +58,10 @@ function go(distance, type){
 }
 
 function callGo(){
-    var miles = int(document.getElementById("travelInput"));
-    var method = document.getElementById("travelMethod");
-    go(miles, method);
+    alert("hello");
+    let miles = int(document.getElementById("travelInput").value);
+    let method = document.getElementById("travelMethod").value;
+    
+    // go(miles, method);
+    // update(amount);
 }
