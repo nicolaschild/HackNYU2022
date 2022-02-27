@@ -11,16 +11,21 @@
 <body>
     <div class="outershell">
         <header>
-            <h1 id="title" style="line-height: 30px;">Daily Carbon Footprint</h1>
+            <h1 id="title" style="line-height: 30px;">Carbon Footprint in lbs</h1>
         </header>
         
         <hr> <!-- This tag does not need a close -->
             
             <div id="progress">
-                <div class ="left" id="progressBar"></div>
+                <div class="left" id="progressBar"></div>
             </div>
+            <div id="percentage">0%</div>
             <div id="recycleGif">
                 <img src="img/recycle.gif" width="25%"></img>
+            </div>
+
+            <div id="percentage">
+
             </div>
 
         <!-- Calculation travel section -->
@@ -52,13 +57,13 @@
             <!--Energy stuffs-->
             <h2>Energy</h2>
                 <input id="electricalInput" type="text">
-                <select name="typeOfPlastic" id="travelMethod">
+                <select name="typeOfElectric" id="electricalMethod">
                     <option value="dishwasher">Dishwasher</option>
                     <option value="dryer">Dryer</option>
                     <option value="ac">AC</option>
 
                 </select>
-                <button type="button">Add</button>
+                <input id="clickMe" type="button" value="Add" onclick="createObject(document.getElementById('electricalInput').value, document.getElementById('electricalMethod').value);" />
 
             <br></br>
             <!-- Add some paragraphs introducing ourselves, and then explain the importance of keeping

@@ -12,6 +12,13 @@ body {
     /* border-style: solid; */
 }
 
+#percentage {
+    margin-top: -4%;
+    margin-left: 35%;
+    margin-right: 30%;
+    font-weight: bold;
+
+}
 
 #calculators {
     /* Pushed the calculators div up closer to the progress bar */
@@ -46,7 +53,7 @@ body {
     /* Progress bar itself - starts at 1px */
     width: 1%;
     height: 35px;
-    background-color: rgba(55, 128, 38, 255);
+    background-color: rgba(111, 145, 118, 0.8);
     text-align: center;
     line-height: 32px;
 }

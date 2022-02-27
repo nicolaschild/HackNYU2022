@@ -42,25 +42,32 @@ function update(amount) {
     if ((width + amount) < boundary){
         width+=amount;
         element.style.width = width + '%'; 
+        document.getElementById("percentage").innerHTML = width.toFixed(2) + '%';
     }
+    else{
+        element.style.width = "100%";
+        element.style.backgroundColor = "rgba(242, 88, 71, .95)";
+        document.getElementById("percentage").innerHTML = "100%";
     }
+}
 
-class Plane {
-     constructor(value) {
+class Energy{
+    constructor(value, type){
         this.value = value;
-        this.fuel_usage = 51;
+        this.type = type;
+    }
+    calcCF(){
+        load_text(); 
+        switch(this.type){
+            case "dryer":
+                return this.value * .1365;
+            case "dishwasher":
+                return this.value * .598;
+            case "ac":
+                return this.value * .117;
+        }
     }
 }
-
-class Car{
-    constructor(value){
-        this.value = value; //distance in miles
-        this.fuel_usage = 25.4; //miles per gallon
-    }
-}
-
-
-
 
 class Transport{
     constructor(value, type){
@@ -69,17 +76,15 @@ class Transport{
         this.fuel_usage;
     }
     calcCF(){
+        load_text(); 
         switch(this.type){
             case "plane": 
-                load_text(); 
                 this.fuel_usage = 51;
                 return (this.value / this.fuel_usage) * 21;
-            case "car":
-                load_text();   
+            case "car":  
                 this.fuel_usage = 25.4;
                 return (this.value / this.fuel_usage) * 20;
-            case "bus":
-                load_text();   
+            case "bus": 
                 this.fuel_usage = 32.9;
                 return (this.value / this.fuel_usage) * 20;
             default:
@@ -94,6 +99,7 @@ class Plastic {
         this.type = type;
     }
     calcCF(){
+        load_text(); 
         switch(this.type){
             case "eightOz":
                 return this.value * ((8*.5)/50.72);
@@ -106,6 +112,7 @@ class Plastic {
 }
 
 function createObject(value, type){
+    console.log(type);
     value = parseInt(value);
     error = document.getElementById("error");
     if (isNaN(value)) {
@@ -115,13 +122,18 @@ function createObject(value, type){
         error.innerHTML = "";
         var transportArr = ['car', 'plane', 'bus']
         var plasticArr = ['eightOz', 'twelveOz', 'thirtyTwoOz']
+        var energyArr = ['dishwasher', 'dryer', 'ac']
         if (transportArr.indexOf(type) != -1){
             var myTransport = new Transport(value, type);
-            update(.5 * myTransport.calcCF());
+            update(myTransport.calcCF());
         }
         else if (plasticArr.indexOf(type) != -1){
             var myPlas = new Plastic(value, type);
-            update(.5 * myPlas.calcCF());
+            update(myPlas.calcCF());
+        }
+        else if (energyArr.indexOf(type) != -1){
+            var myEnergy = new Energy(value, type);
+            update(myEnergy.calcCF())
         }
     }
 }
